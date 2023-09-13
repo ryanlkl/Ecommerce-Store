@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
       <div>
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="{{url_for('home')}}">Navbar</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -22,7 +22,10 @@
       <div>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Try a product or color" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <button class="btn btn-outline" type="submit">Search</button>
+          <button class="btn btn-outline" href="#">Liked</button>
+          <a class="btn btn-outline" href="{{url_for('sign_in')}}">Account</a>
+          <button class="btn btn-outline" href="#">Basket</button>
         </form>
       </div>
     </div>

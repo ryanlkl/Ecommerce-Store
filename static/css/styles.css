@@ -7,6 +7,15 @@ p {
   font-weight: 400;
 }
 
+#submit {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  width: 100%;
+  margin-top: 10px;
+}
+
 .masthead {
   position: relative; /* Add this to establish a stacking context */
   background-image: url('../assets/img/homepage.jpg');
@@ -33,17 +42,6 @@ p {
   color: white;
   margin-top: 250px;
   float: left;
-}
-
-.navbar {
-  width:100%;
-  color:black;
-  font-weight:700;
-}
-
-.nav-item {
-  padding-left:10px;
-  margin-left: 10px;
 }
 
 .footer .row {

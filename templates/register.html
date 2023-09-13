@@ -1,0 +1,15 @@
+{% from 'bootstrap5/form.html' import render_form %}
+{% block content %}
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+<div>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  {% for message in messages %}
+  <p class="flash">{{ message }}</p>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+  {{ render_form(register_form, novalidate=True, button_map={"submit": "primary"}) }}
+</div>
+{% endblock %}
