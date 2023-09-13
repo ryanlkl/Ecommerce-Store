@@ -1,0 +1,26 @@
+{%  from 'bootstrap5/form.html' import render_form %}
+{% block content %}
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Manage Products</h1>
+      <ul class="nav nav-tabs" style="margin-bottom:20px;">
+        <li><a data-toggle="tab" href="#manage">Manage Products</a></li>
+        <li><a data-toggle="tab" href="#add">Add Products</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div id="manage" class="tab-pane in active">
+          All Products
+        </div>
+        <div id="add" class="tab-pane">
+          Add Products
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% include 'footer.html' %}

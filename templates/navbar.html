@@ -20,11 +20,26 @@
         </ul>
       </div>
       <div>
-        <form class="d-flex" role="search">
+        <form class="d-flex align-items-center" role="search">
           <input class="form-control me-2" type="search" placeholder="Try a product or color" aria-label="Search">
           <button class="btn btn-outline" type="submit">Search</button>
           <button class="btn btn-outline" href="#">Liked</button>
-          <a class="btn btn-outline" href="{{url_for('sign_in')}}">Account</a>
+          <li class="nav-item dropdown" style="list-style: none;">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              Account
+            </a>
+            <ul class="dropdown-menu">
+              {% if current_user.is_authenticated %}
+                {% if current_user.email == "admin@eccom.com" %}
+                <li><a class="dropdown-item" href="{{url_for('manage_products')}}">Manage Products</a></li>
+                {% endif %}
+              <li><a class="dropdown-item" href="#">Account Details</a></li>
+              <li><a class="dropdown-item" href="{{url_for('logout')}}">Log Out</a></li>
+              {% else %}
+              <li><a class="dropdown-item" href="{{url_for('sign_in')}}">Log In/Sign Up</a></li>
+              {% endif %}
+            </ul>
+          </li>
           <button class="btn btn-outline" href="#">Basket</button>
         </form>
       </div>

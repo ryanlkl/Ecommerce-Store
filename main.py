@@ -24,7 +24,7 @@ def load_user(user_id):
   return User.query.get(user_id)
 
 # Connect to DB
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///ecom.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///eccom.db"
 db = SQLAlchemy()
 db.init_app(app)
 
@@ -36,6 +36,7 @@ class Product(db.Model):
   price = db.Column(db.Float, nullable=False)
   description = db.Column(db.Text, nullable=False)
   img_url = db.Column(db.String(250), nullable=False)
+  categories = db.Column(db.String(250), nullable=False)
   reviews = relationship("Review", back_populates="parent_product")
 
 class User(UserMixin, db.Model):
@@ -111,10 +112,10 @@ def sign_in():
     user = db.session.execute(db.select(User).where(User.email == login_form.email.data)).scalar()
     if not user:
       flash("That email does not exist, please try again.")
-      return redirect(url_for("sign-in"))
+      return redirect(url_for("sign_in"))
     elif not check_password_hash(user.password, password):
       flash("Password incorrect, please try again.")
-      return redirect(url_for("sign-in"))
+      return redirect(url_for("sign_in"))
     else:
       login_user(user)
       return redirect(url_for("home"))
@@ -129,6 +130,10 @@ def logout():
 @app.route("/men")
 def men():
   return render_template("men.html")
+
+@app.route("/manage-products")
+def manage_products():
+  return render_template("products.html")
 
 
 if __name__ == "__main__":
