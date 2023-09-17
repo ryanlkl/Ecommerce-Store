@@ -35,7 +35,7 @@ class Product(db.Model):
   title = db.Column(db.String(100), nullable=False)
   price = db.Column(db.Float, nullable=False)
   description = db.Column(db.Text, nullable=False)
-  img_url = db.Column(db.String(250), nullable=False)
+  img_url = db.Column(db.String)
   categories = db.Column(db.String(250), nullable=False)
   reviews = relationship("Review", back_populates="parent_product")
 
@@ -131,9 +131,22 @@ def logout():
 def men():
   return render_template("men.html")
 
-@app.route("/manage-products")
+@app.route("/manage-products", methods=["POST","GET"])
 def manage_products():
-  return render_template("products.html")
+  form = CreateProductForm()
+  if form.validate_on_submit():
+    new_product = Product(
+      title = form.title.data,
+      price = form.price.data,
+      description = form.description.data,
+      categories = form.categories.data,
+      img_url = form.img_url.data
+    )
+    db.session.add(new_product)
+    db.session.commit()
+    return redirect("manage_products")
+  all_products = db.session.execute(db.select(Product).order_by(Product.title)).scalars().all()
+  return render_template("products.html", add_product_form = form, all_products = all_products)
 
 
 if __name__ == "__main__":
