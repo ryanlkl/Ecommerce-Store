@@ -1,4 +1,4 @@
-from wtforms import StringField, FloatField, SubmitField, EmailField, PasswordField
+from wtforms import StringField, FloatField, SubmitField, EmailField, PasswordField, TextAreaField, FileField
 from flask_ckeditor import CKEditorField
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired
@@ -19,6 +19,8 @@ class CreateProductForm(FlaskForm):
   title = StringField("Product Name",validators=[DataRequired()])
   price = FloatField("Price",validators=[DataRequired()])
   description = CKEditorField("Product Description",validators=[DataRequired()])
+  categories = TextAreaField("Categories", validators=[DataRequired()])
+  img_url = FileField("Images", validators=[DataRequired()])
   submit = SubmitField("Create")
 
 class ReviewForm(FlaskForm):
